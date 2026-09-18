@@ -28,9 +28,6 @@ public class MyAI extends CellAI {
              }
              else if(GridFunctions.getNeighbors(i,j,grid) == 3 && ran >=5 ) {
                  return new Location(i, j);
-            if
-             
-             }
          }
         return null;
      }
