@@ -17,18 +17,21 @@ public class MyAI extends CellAI {
 
     @Override
     public Location select(Grid grid) {
-        /*
-         * Replace this starter strategy.
-         *
-         * Helpful information:
-         *   getID()                     -> your cell ID
-         *   grid.getRows()              -> number of rows
-         *   grid.getCols()              -> number of columns
-         *   grid.getCell(r, c)          -> -1 if dead, otherwise an AI ID
-         *   GridFunctions.getNeighbors  -> number of living neighbors
-         *   GridFunctions.mostCommonNeighbor -> most common neighboring AI
-         *   randomInt(bound)            -> reproducible random integer
-         */
-        return new Location(randomInt(grid.getRows()), randomInt(grid.getCols()));
-    }
-}
+        int ran = (int)(Math.random() *10)+ 1;
+     for(int i = 0; i < grid.getRows(); i++) {
+         for(int j = 0; j < grid.getCols(); j++) {
+             if(super.getID() != grid.getCell(i,j) && grid.getCell(i,j) != -1 && GridFunctions.getNeighbors(i,j,grid) == 3) {
+                return new Location(i, j);
+             }
+             if(GridFunctions.getNeighbors(i,j,grid) == 2 && ran <= 5) {
+                 return new Location(i, j);
+             }
+             else if(GridFunctions.getNeighbors(i,j,grid) == 3 && ran >=5 ) {
+                 return new Location(i, j);
+            if
+             
+             }
+         }
+        return null;
+     }
+ }
