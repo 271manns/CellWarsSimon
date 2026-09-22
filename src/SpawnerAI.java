@@ -24,4 +24,5 @@ public class SpawnerAI extends CellAI {
         // Extremely unlikely unless the board is completely full.
         return new Location(0, 0);
     }
+    
 }
