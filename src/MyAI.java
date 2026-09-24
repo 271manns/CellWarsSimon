@@ -134,7 +134,7 @@ public class MyAI extends CellAI {
             {
                 int neighbors = GridFunctions.getNeighbors(i, j, grid);
                 int neighbors2 = GridFunctions.getNeighbors(i, j+1, grid);
-                if(grid.getCell(i,j) == getID() && grid.getCell(i,j+1) == getID() && neighbors == 2 && neighbors2 ==2)
+                if(grid.getCell(i,j) == getID() && grid.getCell(i,j+1) == getID() && neighbors == 1 && neighbors2 ==1)
                 {
                     return new Location(i-1, j);
                 }
