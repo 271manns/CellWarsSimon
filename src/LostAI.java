@@ -5,10 +5,16 @@
  * AI Code Name: ______________________
  *
  * Strategy Description:
- * Replace this comment with a short explanation of the strategy your AI uses.
- * Your final strategy must be fundamentally different from the sample AIs.
+ * My AI is a randomized AI that will either attack or defend based on a random number generated.
+ * If the attack method is chosen, the code will specifically look for simple oscillators, a line of 3 cells that belongs to the opponent. If found, the code will return the location of the middle cell, seperating the oscillator from it's neighbors and killing it off.
+ * If no oscillator is found, then it will look for a simple still life, a 2x2 grid of cells that belong to the opponent
+ * If one of these is found, it will return a cell in a location to the left,right,above, or below that still life, depending on the Location of the still life, ultimately killing that still life. 
+ * If none of these are found, the code specifically looks for a cell that belongs to the opponent and has 2 or 3 neighbors. This reflects many complex oscillators or still lifes that my methods don't check for, but could still be present and survive. 
+ * If the random number generator chooses the defend method, the code will look for any line of two cells that belong to me and have one neighbor.
+ * If found, then the code will return a location above that horizontal line, creating a simple still life. 
+ * If none of these are found, the code will then default to calling the attack method so that I do not waste a turn.  
  */
-public class MyAI extends CellAI {
+public class LostAI extends CellAI {
 
     @Override
     public String getAIName() {
