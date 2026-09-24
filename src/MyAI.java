@@ -45,7 +45,22 @@ public class MyAI extends CellAI {
             Location loc = IsASimpleStillLife(grid);
             if(loc.getCol() == 0)
             {
-                loc = new Location(loc.getRow(), loc.getCol()+1);
+                loc = new Location(loc.getRow(), loc.getCol()+2);
+                return loc;
+            }
+            if(loc.getCol() == grid.getCols()-1)
+            {
+                loc = new Location(loc.getRow(), loc.getCol()-1);
+                return loc;
+            }
+            if(loc.getRow() == 0)
+            {
+                loc = new Location(loc.getRow()+2, loc.getCol());
+                return loc;
+            }
+            if(loc.getRow() == grid.getRows()-1)
+            {
+                loc = new Location(loc.getRow()-1, loc.getCol());
                 return loc;
             }
             loc = new Location(loc.getRow(), loc.getCol()-1);
@@ -79,9 +94,9 @@ public class MyAI extends CellAI {
     
     public Location IsASimpleStillLife(Grid grid)
     {
-        for(int i = 1; i < grid.getRows() - 1; i++)
+        for(int i = 0; i < grid.getRows()-1; i++)
         {
-            for(int j = 1; j < grid.getCols() - 1; j++)
+            for(int j = 0; j < grid.getCols()-1; j++)
             {
                 int neighbors1 = GridFunctions.getNeighbors(i, j, grid);
                 int neighbors2 = GridFunctions.getNeighbors(i + 1, j, grid);
