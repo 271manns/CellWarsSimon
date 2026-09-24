@@ -12,7 +12,7 @@ public class MyAI extends CellAI {
 
     @Override
     public String getAIName() {
-        return "MyAI - CHANGE ME";
+        return "LostAI";
     }
 
     @Override
@@ -43,6 +43,11 @@ public class MyAI extends CellAI {
         else if(IsASimpleStillLife(grid) != null)
         {
             Location loc = IsASimpleStillLife(grid);
+            if(loc.getCol() == 0)
+            {
+                loc = new Location(loc.getRow(), loc.getCol()+1);
+                return loc;
+            }
             loc = new Location(loc.getRow(), loc.getCol()-1);
             return loc;
         }
@@ -78,8 +83,12 @@ public class MyAI extends CellAI {
         {
             for(int j = 1; j < grid.getCols() - 1; j++)
             {
-                
-                    if(grid.getCell(i, j) != getID() && grid.getCell(i,j) != -1&& grid.getCell(i + 1, j) != getID()&& grid.getCell(i+1,j) != -1 && grid.getCell(i, j + 1) != getID()&& grid.getCell(i,j+1) != -1 && grid.getCell(i + 1, j + 1) != getID() && grid.getCell(i+1,j+1) != -1)
+                int neighbors1 = GridFunctions.getNeighbors(i, j, grid);
+                int neighbors2 = GridFunctions.getNeighbors(i + 1, j, grid);
+                int neighbors3 = GridFunctions.getNeighbors(i, j + 1, grid);
+                int neighbors4 = GridFunctions.getNeighbors(i + 1, j + 1, grid);
+                    if(grid.getCell(i, j) != getID() && grid.getCell(i,j) != -1&& grid.getCell(i + 1, j) != getID()&& grid.getCell(i+1,j) != -1 && grid.getCell(i, j + 1) != getID()&& grid.getCell(i,j+1) != -1 && grid.getCell(i + 1, j + 1) != getID() && grid.getCell(i+1,j+1) != -1
+                    && neighbors1 == 3 && neighbors2 == 3 && neighbors3 == 3 && neighbors4 == 3)
                     {
                         return new Location(i, j);
                     }
@@ -95,12 +104,18 @@ public class MyAI extends CellAI {
             for(int j = 1; j < grid.getCols()-1; j++)
             {
                 {  
-                
-                    if(grid.getCell(i, j-1) != getID() && grid.getCell(i,j-1)!= -1 && grid.getCell(i, j+1) != getID() && grid.getCell(i,j+1)!= -1 && grid.getCell(i, j) != getID() && grid.getCell(i,j)!= -1)
+                    int neighbors1 = GridFunctions.getNeighbors(i, j-1, grid);
+                    int neighbors2 = GridFunctions.getNeighbors(i, j+1, grid);
+                    int neighbors3 = GridFunctions.getNeighbors(i, j, grid);
+                    if(grid.getCell(i, j-1) != getID() && grid.getCell(i,j-1)!= -1 && grid.getCell(i, j+1) != getID() && grid.getCell(i,j+1)!= -1 && grid.getCell(i, j) != getID() && grid.getCell(i,j)!= -1
+                    && neighbors1 == 2 && neighbors2 == 2 && neighbors3 == 2)
                     {
                         return new Location(i, j);
                     }
-                    else if(grid.getCell(i+1, j) != getID() && grid.getCell(i+1, j)!= -1 && grid.getCell(i, j)!= getID() && grid.getCell(i,j)!= -1 && grid.getCell(i-1, j) != getID() && grid.getCell(i-1, j)!= -1)
+                    neighbors1 = GridFunctions.getNeighbors(i-1, j, grid);
+                    neighbors2 = GridFunctions.getNeighbors(i+1, j, grid);
+                    if(grid.getCell(i+1, j) != getID() && grid.getCell(i+1, j)!= -1 && grid.getCell(i, j)!= getID() && grid.getCell(i,j)!= -1 && grid.getCell(i-1, j) != getID() && grid.getCell(i-1, j)!= -1
+                    && neighbors1 == 2 && neighbors2 == 2 && neighbors3 == 2)
                     {
                         return new Location(i, j);
                     }
@@ -112,16 +127,19 @@ public class MyAI extends CellAI {
 
     public Location almostAStillLife(Grid grid)
     {
+        
         for(int i = 1; i < grid.getRows() - 1; i++)
         {
             for(int j = 1; j < grid.getCols() - 1; j++)
             {
-                if(grid.getCell(i,j) == getID() && grid.getCell(i+1,j) == getID())
+                int neighbors = GridFunctions.getNeighbors(i, j, grid);
+                int neighbors2 = GridFunctions.getNeighbors(i, j+1, grid);
+                if(grid.getCell(i,j) == getID() && grid.getCell(i,j+1) == getID() && neighbors == 2 && neighbors2 ==2)
                 {
                     return new Location(i-1, j);
                 }
             }
         }
-        return new Location(0,0);
+        return attack(grid);
     }
 }
