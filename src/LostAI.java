@@ -1,8 +1,8 @@
 /**
  * STUDENT FILE
  *
- * Name: ______________________________
- * AI Code Name: ______________________
+ * Name: Simon Mann
+ * AI Code Name: LostAI or name given by Mr.Tiveron
  *
  * Strategy Description:
  * My AI is a randomized AI that will either attack or defend based on a random number generated.
